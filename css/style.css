@@ -15,12 +15,6 @@ html {
   box-sizing: border-box;
 }
 
-.listening {
-  margin-top: 60px;
-  margin-left: 10px;
-  margin-right: 50px;
-}
-
 #slideOut {
   position: fixed;
   width: 300px;
@@ -71,31 +65,39 @@ html {
   height: 400px;
 }
 
-.content-area {
-  display: flex;
-}
-
-.site-main {
-  width: 100%;
-}
-
-.sidebar-area {
-  background-color: #13232f;
-  position: relative;
-  width: 35%;
-  height: 100vh;
-}
-
-.side-navigation.fixed {
+.sidebar {
   position: fixed;
-  top: 0;
-  width: 35%;
+  width: 30%;
+  height: 100vh;
+  background: #13232f;
 }
-.side-navigation.bottom {
-  position: absolute;
-  bottom: 0;
-  top: auto;
-  width: 35%;
+
+.content {
+  height: 100%;
+  width: auto;
+  position: relative;
+  overflow: auto;
+  z-index: 1;
+}
+
+.info {
+  width: 96%;
+  height: 100vh;
+  position: relative;
+}
+
+@media (min-width: 600px) {
+  .sidebar {
+    width: 30%;
+  }
+
+  .content {
+    margin-left: 30%;
+  }
+}
+.listening {
+  margin-top: 60px;
+  margin-left: 10px;
 }
 
 .controls {
@@ -105,7 +107,6 @@ html {
 
 .collapse-group {
   padding-left: 10px;
-  padding-right: 50px;
   margin-bottom: 10px;
 }
 
@@ -225,7 +226,7 @@ input:focus, textarea:focus {
 textarea {
   border: 2px solid #a0b3b0;
   resize: vertical;
-  height: 63vh;
+  height: 60vh;
 }
 
 .field-wrap {

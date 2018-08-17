@@ -1,7 +1,7 @@
 @import "compass/css3";
 
 $body-bg: #4da6bb;
-$form-bg: #13232f;
+$left-sidebar-bg: #13232f;
 $white: #ffffff;
 
 $main: #1ab188;
@@ -15,7 +15,7 @@ $thin: 300;
 $normal: 400;
 $bold: 600;
 $br: 4px;
-$sidebar-width: 35%;
+$sidebar-width: 30%;
 $form-width: calc($sidebar-width - 2%);
 
 html {
@@ -35,11 +35,6 @@ html {
   box-sizing: border-box;
 }
 
-.listening{
-  margin-top: 60px;
-  margin-left: 10px;
-  margin-right: 50px;
-}
 
 #slideOut {
   position: fixed;
@@ -95,34 +90,43 @@ html {
   height: 400px;
 }
 
-.content-area {
-  display: flex;
-}
+//Sidebar 
+ .sidebar {
+   position: fixed;
+   width: $sidebar-width;
+   height: 100vh;
+   background: $left-sidebar-bg;
+ }
+ 
+ .content {
+   height: 100%;
+   width: auto;
+   position: relative;
+   overflow: auto;
+   z-index: 1;
+ }
+ 
+ .info {
+   width: 96%;
+   height: 100vh;
+   position: relative;
+ }
+ 
+ @media (min-width:600px) {
+   .sidebar {
+     width: $sidebar-width;
+   }
+   .content {
+     margin-left: $sidebar-width;
+   }
+ }
 
-.site-main {
-  width: 100%;
-}
 
-.sidebar-area {
-  background-color: $form-bg;
-  position: relative;
-  width: $sidebar-width;
-  height: 100vh;
-}
+//content 
 
-.side-navigation {
-  &.fixed {
-    position: fixed;
-    top: 0;
-    width: $sidebar-width;
-  }
-
-  &.bottom {
-    position: absolute;
-    bottom: 0;
-    top: auto;
-    width: $sidebar-width;
-  }
+.listening{
+  margin-top: 60px;
+  margin-left: 10px;
 }
 
 .controls {
@@ -132,7 +136,6 @@ html {
 
 .collapse-group {
   padding-left: 10px;
-  padding-right: 50px;
   margin-bottom: 10px;
 }
 
@@ -154,13 +157,14 @@ html {
  #draggablePanelList2 .panel-heading {
         cursor: move;
     }
-// Formulaire
+
+//Formulaire
 
 .form {
   padding: 20px;
   max-width: $form-width;
   margin-top:40px;
-  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+  box-shadow:0 4px 10px 4px rgba($left-sidebar-bg,.3);
 }
 
 .tab-group {
@@ -248,7 +252,7 @@ input, textarea {
 textarea {
   border:2px solid $gray-light;
   resize: vertical;
-  height: 63vh;
+  height: 60vh;
 }
 
 .field-wrap {

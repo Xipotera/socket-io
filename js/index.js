@@ -48,6 +48,8 @@ var panelList = $('#draggablePanelList');
             }
         });
 
+
+
 $(document).ready(function() {
 
 	/** ******************************
@@ -113,7 +115,6 @@ $(document).ready(function() {
 });
 });
 
-//Formaulaire
 
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
   
