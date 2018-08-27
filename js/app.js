@@ -50,7 +50,6 @@ $(function() {
                     $("#connect .btn").addClass('btn-danger');
                     $("#slideOut .slideOutTab").addClass('slideConnectedTab');
 
-                    $('#slideOut').toggleClass('showSlideOut');
                     $("#connect input").prop('disabled', true);
                 });
                 socket.on('disconnect', function(sock) {

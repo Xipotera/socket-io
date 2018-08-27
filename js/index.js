@@ -7,6 +7,10 @@ this.$slideOut.find('.slideOutTab').on('click', () => {
     $('#slideOut').toggleClass('showSlideOut');
 });
 
+$('.close').on('click', function () {
+    $('#slideOut').toggleClass('showSlideOut');
+})
+
 $('.open-button').on('click', function () {
     $(this).closest('.collapse-group').find('.collapse').collapse('show');
 });
