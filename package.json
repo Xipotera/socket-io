@@ -1,0 +1,26 @@
+{
+  "name": "socket.io-devtools",
+  "version": "1.0.0",
+  "description": "socket/io client for developers",
+  "main": "",
+  "scripts": {
+    "server": "NODE_ENV=dev webpack-dev-server --hot",
+    "dev": "NODE_ENV=dev webpack",
+    "prod": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xipotera/socket-io.git"
+  },
+  "author": "Mathieu 'xipotera' Vie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xipotera/socket-io/issues"
+  },
+  "homepage": "https://github.com/Xipotera/socket-io#readme",
+  "devDependencies": {
+
+  }
+}
