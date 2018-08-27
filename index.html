@@ -123,50 +123,16 @@
               <div class="row">
                 <div class="col-md-12">
                     <form id="clearHistory">
-                        <a class="pull-right" href="">Clear ALL History</a>
+                        <button type="submit" class="button-link white-link pull-right">Clear ALL History</button>
                     </form>
 
 
-              </div>
                 </div>
-              <div class="panel panel-info">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              Panel Widget Info
-              <div class="pull-right">
-                <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
               </div>
-            </h4>
-          </div>
 
-          <div class="panel-wrapper collapse in">
-            <div class="panel-body">
-
-
-
-              </div>
-          </div>
-        </div>
-              <div class="panel panel-info">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              Panel Widget Info
-              <div class="pull-right">
-                <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-              </div>
-            </h4>
-          </div>
-
-          <div class="panel-wrapper collapse in">
-            <div class="panel-body">
-
-            </div>
-          </div>
-        </div>
+                <div id="emitHistoryPanels">
+                    <!--wait emiting-->
+                </div>
 
             </div>
           </div>
@@ -263,7 +229,7 @@
   </div>
   <!-- /.content-area -->
 
-</body>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
@@ -272,6 +238,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.slim.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/6.2.0/pouchdb.min.js"></script>
 <!--<script src="node_modules/lodash/lodash.js"></script>-->
+
+<script type="text/html" id="historyContent">
+    <div class="row">
+        <form id="form[[id]]">
+            <div class="col-sm-2">
+                <span class="text-muted">[[time]]</span>
+            </div>
+            <div class="col-sm-10">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" name="reqData" value='[[reqData]]' />
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-success" >Emit</button>
+                    </span>
+                </div>
+
+                <span class="label label-primary emitted-msg-[[id]]" style="display:none">Event emitted!</span>
+                <span class="label label-danger emitted-failure-msg-[[id]]" style="display:none">Event failure</span>
+                <input type="hidden" name="historyId" value="[[id]]">
+                <input type="hidden" name="event" value="[[event]]">
+            </div>
+
+
+        </form>
+    </div>
+</script>
 
 
     <script  src="js/index.js"></script>

@@ -218,20 +218,38 @@ function makePanel(event) {
             </div>
         </div>
     `;
+}
 
+function makePanelHistory(event) {
+    return `
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                On "` + event + `" Events
+                <div class="pull-right">
+                  <a href="#" data-perform="panel-refresh" onclick="clearEventsHistory('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
+                  <a href="#" data-perform="panel-collapse" data-target="#panel-` + event + `-content" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
+                </div>
+              </h4>
+            </div>
 
+            <div class="panel-wrapper collapse in">
+                <div data-windowId="` + event + `" class="panel-body" id="panel-` + event + `-contentHistory">
+                </div>
+            </div>
+        </div>
+    `;
+}
 
-
-
-
+function clearEventsHistory(event) {
+    $('#emitHistoryPanels').find("[data-windowId='" + event + "']").empty();
 }
 
 function getFormattedNowTime() {
     var now = new Date();
     return now.getHours() + ":" +
         now.getMinutes() + ":" +
-        now.getSeconds() + ":" +
-        now.getMilliseconds();
+        now.getSeconds() ;
 }
 
 function initDB(clear) {
@@ -306,7 +324,7 @@ function addHistoryPanel(history) {
     var histPanelId = history.event;
     var panel = $("#emitHistoryPanels").find("[data-windowId='" + histPanelId + "']");
     if (panel.length == 0) {
-        $('#emitHistoryPanels').prepend(makePanel(histPanelId));
+        $('#emitHistoryPanels').prepend(makePanelHistory(histPanelId));
     }
     var elementToExtend = $("#emitHistoryPanels").find("[data-windowId='" + histPanelId + "']");
     var historyContent = $('#historyContent').text();
@@ -317,10 +335,16 @@ function addHistoryPanel(history) {
     historyContent = historyContent.split('[[event]]').join(history.event);
     elementToExtend.prepend(historyContent);
     $("#form" + id).submit(function(e) {
+        console.log('eo')
         e.preventDefault();
         var id = $(this).find('[name="historyId"]').val();
-        var data = JSON.parse($(this).find('[name="reqData"]').val());
+        var data = $(this).find('[name="reqData"]').val();
+        // var data = parseJSONForm(editor.getValue());
+
         var event = $(this).find('[name="event"]').val();
+
+        console.log(data)
+        console.log(event)
         if (socket.io) {
             if (event !== '' && data !== '') {
                 emit(event, data, 'emitAck-' + event);
