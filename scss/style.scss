@@ -1,7 +1,7 @@
 @import "compass/css3";
 
 $body-bg: #4da6bb;
-$left-sidebar-bg: #13232f;
+$left-sidebar-bg: #353030;
 $white: #ffffff;
 
 $main: #1ab188;
@@ -288,3 +288,10 @@ textarea {
   background-color: $main;
 }
 
+#editor { 
+  height:60vh;
+}
+
+pre {
+  background-color: #f4ecec;
+}

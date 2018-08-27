@@ -1,3 +1,5 @@
+hljs.initHighlightingOnLoad();
+
 this.$slideOut = $('#slideOut');
 
 // Slideout show
@@ -158,4 +160,18 @@ $('.tab a').on('click', function (e) {
   
   $(target).fadeIn(600);
   
+});
+
+var editor = ace.edit("editor");
+editor.setValue('{}');
+editor.setOptions({
+    autoScrollEditorIntoView: true,
+    theme: "ace/theme/pastel_on_dark",
+    showPrintMargin: false,
+    mode: "ace/mode/json"
+})
+editor.getSession().on('change', function(e) {
+    console.log(editor)
+var val = editor.getValue();
+  console.log(val)
 });

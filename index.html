@@ -9,6 +9,7 @@
 
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/atelier-plateau-light.min.css'>
 
       <link rel="stylesheet" href="css/style.css">
 
@@ -104,10 +105,12 @@
                 </div>
 
                 <div class="field-wrap">
-                  <label>
+<!--                   <label>
               json data<span class="req">*</span>
-            </label>
-                  <textarea rows="10" id="event-data" required autocomplete="off"></textarea>
+            </label> -->
+                  <div id="editor">
+                    
+                  </div>
                 </div>
 
                 <button type="submit" class="button button-block" />Submit</button>
@@ -135,9 +138,11 @@
           </div>
 
           <div class="panel-wrapper collapse in">
-            <div class="panel-body">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-            </div>
+            <div class="panel-body"> 
+
+              
+              
+              </div>
           </div>
         </div>
               <div class="panel panel-info">
@@ -154,7 +159,7 @@
 
           <div class="panel-wrapper collapse in">
             <div class="panel-body">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
+                
             </div>
           </div>
         </div>
@@ -216,10 +221,38 @@
 
             <div class="panel-wrapper collapse in">
               <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
+                <pre><code class="json">{
+  "token": "XaCd1gEETFBtSn1Vf7DxzfKJNvSqdcchRHKbhldrXhdSyKpRbuEPsG8QwwJnZ3hA",
+  "response": {
+    "botInstance": "havas-voyages",
+    "botName": "havas-voyages",
+    "channel": "all",
+    "type": "all",
+    "context": null,
+    "entities": {},
+    "intent": "",
+    "responses": [
+      [
+        {
+          "type": "text",
+          "followUp": "N",
+          "text": {
+            "values": [
+              "Foo",
+              "Bar"
+            ]
+          }
+        }
+      ]
+    ]
+  },
+  "language": "fr"
+}</code></pre>
+                
               </div>
             </div>
           </div>
+
           <div class="panel panel-info">
             <div class="panel-heading">
               <h4 class="panel-title">
@@ -234,133 +267,7 @@
 
             <div class="panel-wrapper collapse in">
               <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-                    <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                Panel Widget Info
-                <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
-                  <a href="#" data-perform="panel-refresh" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
-                  <a href="#" data-perform="panel-collapse" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
-                </div>
-              </h4>
-            </div>
-
-            <div class="panel-wrapper collapse in">
-              <div class="panel-body">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat perspiciatis unde omnis iste natus error.
+                <pre><code class="json">{ "lorem": "ipsum }"</code></pre>
               </div>
             </div>
           </div>
@@ -392,6 +299,8 @@
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ace.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
 
   
 
