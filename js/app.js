@@ -295,7 +295,6 @@ function initHistory() {
 }
 
 function postDataIntoDB(data, callback) {
-    console.log(data)
     if (localdb == null) {
         localdb = new PouchDB("socketioClientDB");
     }
@@ -303,7 +302,7 @@ function postDataIntoDB(data, callback) {
 }
 
 function emit(event, data, panelId) {
-    console.log('Emitter - emitted: ' + data);
+    console.log('Emitter - emitted: ' + JSON.stringify(data));
     var panel = $("#emitAckResPanels").find("[data-windowId='" + panelId + "']");
     if (panel.length == 0) {
         $('#emitAckResPanels').prepend(makePanel(panelId));
