@@ -184,6 +184,10 @@ function clearEvents(event) {
     }
 }
 
+function clearEventsHistory(event) {
+    $('#emitHistoryPanels').find("[data-windowId='" + event + "']").empty();
+}
+
 function clearAllEvents() {
     console.log("clearAllEvents")
     $('#eventPanels').find('.panel-body')
@@ -238,10 +242,6 @@ function makePanelHistory(event) {
             </div>
         </div>
     `;
-}
-
-function clearEventsHistory(event) {
-    $('#emitHistoryPanels').find("[data-windowId='" + event + "']").empty();
 }
 
 function getFormattedNowTime() {

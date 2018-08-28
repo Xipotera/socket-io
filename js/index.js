@@ -61,9 +61,9 @@ jQuery(($) => {
 
     $(document).ready(() => {
         /** ******************************
-	 * Collapse Panels
-	 * [data-perform="panel-collapse"]
-	 ****************************** * */
+	    * Collapse Panels
+	    * [data-perform="panel-collapse"]
+	    ****************************** * */
         (function ($, window, document) {
             const panelSelector = '[data-perform="panel-collapse"]';
 
