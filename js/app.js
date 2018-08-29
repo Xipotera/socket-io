@@ -47,7 +47,7 @@ $(function() {
                     $("#connect .btn").html('Disconnect');
                     $("#connect .btn").removeClass('btn-success');
                     $("#connect .btn").addClass('btn-danger');
-                    $("#slideOut .slideOutTab").addClass('slideConnectedTab');
+                    $("#slideOut .slideOutTab").addClass('slideConnectedTab'); 
 
                     $("#connect input").prop('disabled', true);
                 });
