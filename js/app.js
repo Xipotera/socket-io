@@ -81,6 +81,7 @@ $(function() {
         e.preventDefault();
         console.log('addListener')
         var event = $("#addListener input:first").val().trim();
+        console.log(eventsToListen)
         if (event.length !== 0 && eventsToListen.indexOf(event) === -1) {
             eventsToListen.push(event);
             $('#eventPanels').prepend(makePanel(event));
@@ -135,6 +136,11 @@ function setHash() {
     if (url !== '' && eventsToListen.length > 0) {
         location.hash = "url=" + window.btoa(url) + "&opt=" + window.btoa(options) + "&events=" + eventsToListen.join();
     }
+
+    if (url !== '' && eventsToListen.length === 0) {
+        location.hash = "url=" + window.btoa(url) + "&opt=" + window.btoa(options);
+    }
+
 }
 
 function processHash() {
@@ -179,8 +185,12 @@ function clearEvents(event) {
 }
 
 function closeEventListener(event) {
+    console.log(event)
+    console.log(eventsToListen)
     eventsToListen.splice(eventsToListen.indexOf(event),1);
+    console.log(eventsToListen)
     setHash();
+
 
 
 }
