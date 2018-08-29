@@ -185,14 +185,12 @@ function clearEvents(event) {
 }
 
 function closeEventListener(event) {
-    console.log(event)
-    console.log(eventsToListen)
     eventsToListen.splice(eventsToListen.indexOf(event),1);
-    console.log(eventsToListen)
     setHash();
+}
 
-
-
+function closeEventHistory(event) {
+    deleteEventHistory(event);
 }
 
 function clearEventsHistory(event) {
@@ -241,6 +239,7 @@ function makePanelHistory(event) {
               <h4 class="panel-title">
                 On "` + event + `" Events
                 <div class="pull-right">
+                  <a href="#" data-perform="panel-dismiss" onclick="deleteEventHistory('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
                   <a href="#" data-perform="panel-refresh" onclick="clearEventsHistory('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
                   <a href="#" data-perform="panel-collapse" data-target="#panel-` + event + `-content" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
                 </div>
@@ -271,6 +270,40 @@ function initDB(clear) {
     } else {
         localdb = new PouchDB(dbName);
     }
+}
+
+
+function deleteEventHistory(event) {
+    initDB(false);
+    var ddoc = {
+        _id: '_design/index',
+        views: {
+            index: {
+                map: function mapFun(doc) {
+                    emit(doc._id, doc);
+                }.toString()
+            }
+        }
+    };
+    localdb.put(ddoc).catch(function(err) {
+        if (err.name !== 'conflict') {
+            throw err;
+        }
+    }).then(function() {
+        return localdb.query('index');
+    }).then(function(result) {
+        var rows = result.rows;
+        for (var i in rows) {
+            var doc = rows[i].value;
+            if(doc.event === event) {
+                console.log(doc);
+                return localdb.remove(doc._id, doc._rev)
+            }
+
+        }
+    }).catch(function(err) {
+        console.log(err);
+    });
 }
 
 function initHistory() {
