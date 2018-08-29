@@ -107,7 +107,7 @@ $(function() {
 
                 postDataIntoDB(emitData);
                 addHistoryPanel(emitData);
-                emit(event, data, 'emitAck-' + event);
+                emit(event, data);
                 $('.emitted-msg').show().delay(700).fadeOut(1000)
             } else {
                 $('.emitted-failure-msg').show().delay(700).fadeOut(1000);
@@ -133,7 +133,6 @@ $(function() {
 
 function setHash() {
     if (url !== '' && eventsToListen.length > 0) {
-        // var hashEvents = eventsToListen.slice();
         location.hash = "url=" + window.btoa(url) + "&opt=" + window.btoa(options) + "&events=" + eventsToListen.join();
     }
 }
@@ -303,21 +302,9 @@ function postDataIntoDB(data, callback) {
     localdb.post(data).then(callback);
 }
 
-function emit(event, data, panelId) {
+function emit(event, data) {
     console.log('Emitter - emitted: ' + JSON.stringify(data));
-    var panel = $("#emitAckResPanels").find("[data-windowId='" + panelId + "']");
-    if (panel.length == 0) {
-        $('#emitAckResPanels').prepend(makePanel(panelId));
-    }
-    var emitData = {
-        event: event,
-        request: data,
-        time: getFormattedNowTime()
-    };
-    socket.emit(event, data, function(res) {
-        var elementToExtend = $("#emitAckResPanels").find("[data-windowId='" + panelId + "']");
-        elementToExtend.prepend('<p><span class="text-muted">' + getFormattedNowTime() + '</span><strong> ' + JSON.stringify(res) + '</strong></p>');
-    });
+    socket.emit(event, data);
 }
 
 function addHistoryPanel(history) {
@@ -338,13 +325,11 @@ function addHistoryPanel(history) {
         e.preventDefault();
         var id = $(this).find('[name="historyId"]').val();
         var data = $(this).find('[name="reqData"]').val();
-        // var data = parseJSONForm(editor.getValue());
-
         var event = $(this).find('[name="event"]').val();
 
         if (socket.io) {
             if (event !== '' && data !== '') {
-                emit(event, data, 'emitAck-' + event);
+                emit(event, JSON.parse(data));
                 $('.emitted-msg-' + id).show().delay(700).fadeOut(1000)
             } else {
                 $('.emitted-failure-msg-' + id).show().delay(700).fadeOut(1000);
