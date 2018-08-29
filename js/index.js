@@ -7,6 +7,12 @@ this.$slideOut.find('.slideOutTab').on('click', () => {
     $('#slideOut').toggleClass('showSlideOut');
 });
 
+$("#connect .btn").on('click', function () {
+    if ($("#connect .btn").hasClass('btn-success')) {
+        $('#slideOut').toggleClass('showSlideOut');
+    }
+});
+
 $('.close').on('click', function () {
     $('#slideOut').toggleClass('showSlideOut');
 })

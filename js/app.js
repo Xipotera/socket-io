@@ -27,7 +27,6 @@ $(function() {
     $("#connect").submit(function(e) {
         e.preventDefault();
         if ($("#connect .btn").html().trim() === 'Connect') {
-            console.log("connect")
             url = $("#connect_server").val().trim();
             options = $("#connect_options").val().trim();
             var opt = options ? JSON.parse(options) : null;
@@ -159,8 +158,6 @@ function processHash() {
 
 function registerEvents() {
     if (socket.io) {
-        console.log('registerEvents')
-        console.log(eventsToListen)
         $.each(eventsToListen, function(index, value) {
             socket.on(value, function(data) {
                 if (!data) {
@@ -338,7 +335,6 @@ function addHistoryPanel(history) {
     historyContent = historyContent.split('[[event]]').join(history.event);
     elementToExtend.prepend(historyContent);
     $("#form" + id).submit(function(e) {
-        console.log('eo')
         e.preventDefault();
         var id = $(this).find('[name="historyId"]').val();
         var data = $(this).find('[name="reqData"]').val();
@@ -346,8 +342,6 @@ function addHistoryPanel(history) {
 
         var event = $(this).find('[name="event"]').val();
 
-        console.log(data)
-        console.log(event)
         if (socket.io) {
             if (event !== '' && data !== '') {
                 emit(event, data, 'emitAck-' + event);
