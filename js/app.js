@@ -1,4 +1,4 @@
-var eventsToListen = ['message'];
+var eventsToListen = [];
 var socket = {};
 var disconnectedInerval;
 var url = '';
@@ -13,7 +13,6 @@ $(function() {
     $('.listen-failure-msg').hide();
     $('.listen-added-msg').hide();
     $('.disconnected-alert, .connected-alert').hide();
-    $('#eventPanels').prepend(makePanel('message'));
     $('input[type=radio][name=emitAs]').change(function() {
         if (this.value === 'JSON') {
             $('#plainTextData').hide();
@@ -28,6 +27,7 @@ $(function() {
     $("#connect").submit(function(e) {
         e.preventDefault();
         if ($("#connect .btn").html().trim() === 'Connect') {
+            console.log("connect")
             url = $("#connect_server").val().trim();
             options = $("#connect_options").val().trim();
             var opt = options ? JSON.parse(options) : null;
@@ -134,12 +134,8 @@ $(function() {
 
 function setHash() {
     if (url !== '' && eventsToListen.length > 0) {
-        var hashEvents = eventsToListen.slice();
-        var messageIndex = hashEvents.indexOf('message');
-        if (messageIndex !== -1) {
-            hashEvents.splice(messageIndex, 1);
-        }
-        location.hash = "url=" + window.btoa(url) + "&opt=" + window.btoa(options) + "&events=" + hashEvents.join();
+        // var hashEvents = eventsToListen.slice();
+        location.hash = "url=" + window.btoa(url) + "&opt=" + window.btoa(options) + "&events=" + eventsToListen.join();
     }
 }
 
@@ -163,6 +159,8 @@ function processHash() {
 
 function registerEvents() {
     if (socket.io) {
+        console.log('registerEvents')
+        console.log(eventsToListen)
         $.each(eventsToListen, function(index, value) {
             socket.on(value, function(data) {
                 if (!data) {
@@ -182,6 +180,13 @@ function clearEvents(event) {
     } else {
         $('#eventPanels').find("[data-windowId='" + event + "']").empty();
     }
+}
+
+function closeEventListener(event) {
+    eventsToListen.splice(eventsToListen.indexOf(event),1);
+    setHash();
+
+
 }
 
 function clearEventsHistory(event) {
@@ -208,7 +213,7 @@ function makePanel(event) {
               <h4 class="panel-title">
                 On "` + event + `" Events
                 <div class="pull-right">
-                  <a href="#" data-perform="panel-dismiss" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
+                  <a href="#" data-perform="panel-dismiss" onclick="closeEventListener('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
                   <a href="#" data-perform="panel-refresh" onclick="clearEvents('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
                   <a href="#" data-perform="panel-collapse" data-target="#panel-` + event + `-content" class="btn btn-info btn-xs pull-right"><i class="fa fa-minus"></i></a>
                 </div>
