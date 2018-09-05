@@ -222,7 +222,7 @@ function makePanel(event) {
         <div class="panel panel-info">
             <div class="panel-heading" id="heading-`+ event+ `">
               <h4 class="panel-title">
-                On "` + event + `" Events - (<span class="count">0</span>)
+                On "` + event + `" Events - (<span class="count" data-toggle="tooltip" title="number of events">0</span>)
                 <div class="pull-right">
                   <a href="#" data-perform="panel-dismiss" onclick="closeEventListener('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
                   <a href="#" data-perform="panel-refresh" onclick="clearEvents('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>

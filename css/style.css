@@ -308,4 +308,5 @@ pre {
 
 .count {
   color: #D95357;
+  cursor: default;
 }
