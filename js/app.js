@@ -107,7 +107,7 @@ $(function() {
                 };
 
                 postDataIntoDB(emitData);
-                addHistoryPanel(emitData);
+                // addHistoryPanel(emitData);
                 emit(event, data);
 
                 $('.emitted-msg').show().delay(700).fadeOut(1000)
@@ -360,10 +360,9 @@ function postDataIntoDB(data, callback) {
         fields: ['_id', '_rev']
     }, function (err, result) {
         if (err) { return console.log(err); }
-        // la requête n'est pas base de données
-        if (result.docs.length <= 0) {
+        if (result.docs.length <= 0) { // create data
             localdb.post(data).then(callback);
-        } else {
+        } else { // update data
             data._rev = result.docs[0]._rev;
             data._id = result.docs[0]._id;
             console.log(JSON.stringify(data, null, 2))
@@ -380,6 +379,7 @@ function emit(event, data) {
 
 
 function addHistoryPanel(history) {
+    console.log('eo')
     var histPanelId = history.event;
     var panel = $("#emitHistoryPanels").find("[data-windowId='" + histPanelId + "']");
     if (panel.length == 0) {
