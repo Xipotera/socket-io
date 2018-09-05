@@ -306,10 +306,8 @@ function deleteEventHistory(event) {
         for (var i in rows) {
             var doc = rows[i].value;
             if(doc.event === event) {
-                console.log(doc);
                 return localdb.remove(doc._id, doc._rev)
             }
-
         }
     }).catch(function(err) {
         console.log(err);
@@ -352,9 +350,7 @@ function postDataIntoDB(data, callback) {
     if (localdb == null) {
         localdb = new PouchDB("socketioClientDB");
     }
-    console.log(JSON.stringify(data.request, null,2))
-
-    // on test si la requete est déja stockée.
+    // test if data is stored.
     localdb.find({
         selector: { query: data.request },
         fields: ['_id', '_rev']
@@ -365,7 +361,6 @@ function postDataIntoDB(data, callback) {
         } else { // update data
             data._rev = result.docs[0]._rev;
             data._id = result.docs[0]._id;
-            console.log(JSON.stringify(data, null, 2))
             localdb.put(data).then(callback);
         }
     });
@@ -379,7 +374,6 @@ function emit(event, data) {
 
 
 function addHistoryPanel(history) {
-    console.log('eo')
     var histPanelId = history.event;
     var panel = $("#emitHistoryPanels").find("[data-windowId='" + histPanelId + "']");
     if (panel.length == 0) {
@@ -414,7 +408,7 @@ function addHistoryPanel(history) {
     });
 }
 
-
+// load stored history
 $('.tab a').on('click', function (e) {
     if ($(this).attr("href") === '#history') {
         $('#emitHistoryPanels').empty();
