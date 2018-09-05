@@ -5,6 +5,8 @@ $left-sidebar-bg: #353030;
 $white: #ffffff;
 
 $main: #1ab188;
+$secondary:#d9534f;
+
 $main-light: lighten($main,5%);
 $main-dark: darken($main,5%);
 
@@ -18,8 +20,8 @@ $br: 4px;
 $sidebar-width: 30%;
 $form-width: calc($sidebar-width - 2%);
 
-$slideDisconnected: #d9534f;
-$slideConnected: #1ab188;
+$slideDisconnected: $secondary;
+$slideConnected: $main;
 
 html {
   box-sizing: border-box;
@@ -331,4 +333,8 @@ pre {
 
 .white-link{
   color:$white;
+}
+
+.count {
+  color: $secondary;
 }

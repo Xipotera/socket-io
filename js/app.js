@@ -47,7 +47,7 @@ $(function() {
                     $("#connect .btn").html('Disconnect');
                     $("#connect .btn").removeClass('btn-success');
                     $("#connect .btn").addClass('btn-danger');
-                    $("#slideOut .slideOutTab").addClass('slideConnectedTab'); 
+                    $("#slideOut .slideOutTab").addClass('slideConnectedTab');
 
                     $("#connect input").prop('disabled', true);
                 });
@@ -81,7 +81,6 @@ $(function() {
         e.preventDefault();
         console.log('addListener')
         var event = $("#addListener input:first").val().trim();
-        console.log(eventsToListen)
         if (event.length !== 0 && eventsToListen.indexOf(event) === -1) {
             eventsToListen.push(event);
             $('#eventPanels').prepend(makePanel(event));
@@ -109,6 +108,7 @@ $(function() {
                 postDataIntoDB(emitData);
                 addHistoryPanel(emitData);
                 emit(event, data);
+
                 $('.emitted-msg').show().delay(700).fadeOut(1000)
             } else {
                 $('.emitted-failure-msg').show().delay(700).fadeOut(1000);
@@ -168,9 +168,11 @@ function registerEvents() {
                 if (!data) {
                     data = '-- NO DATA --'
                 }
-                var elementToExtend = $("#eventPanels").find("[data-windowId='" + value + "']");
+                var panelName = $("#eventPanels").find("[data-windowId='" + value + "']");
+                var elementToExtend = panelName;
                 elementToExtend.prepend('<p><span class="text-muted">' + getFormattedNowTime() + '</span></p>' +
                     '<pre><code class="json"> ' + hljs.highlightAuto(JSON.stringify(data)).value + '</code></pre>');
+                $("#eventPanels").find("#heading-" + value + " span").text($("#eventPanels").find("[data-windowId='" + value + "'] .text-muted").length);
             });
         });
     }
@@ -181,6 +183,7 @@ function clearEvents(event) {
         $('#connectionPanel').empty();
     } else {
         $('#eventPanels').find("[data-windowId='" + event + "']").empty();
+        $("#eventPanels").find("#heading-" + event + " span").text("0");
     }
 }
 
@@ -199,6 +202,10 @@ function clearEventsHistory(event) {
 
 function clearAllEvents() {
     console.log("clearAllEvents")
+    $('#eventPanels').find('.panel-heading span')
+        .each(function() {
+            $(this).text("0");
+        });
     $('#eventPanels').find('.panel-body')
         .each(function() {
             $(this).empty();
@@ -213,9 +220,9 @@ function parseJSONForm(result) {
 function makePanel(event) {
     return `
         <div class="panel panel-info">
-            <div class="panel-heading">
+            <div class="panel-heading" id="heading-`+ event+ `">
               <h4 class="panel-title">
-                On "` + event + `" Events
+                On "` + event + `" Events - (<span class="count">0</span>)
                 <div class="pull-right">
                   <a href="#" data-perform="panel-dismiss" onclick="closeEventListener('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-times"></i></a>
                   <a href="#" data-perform="panel-refresh" onclick="clearEvents('` + event + `')" class="btn btn-info btn-xs pull-right"><i class="fa fa-refresh"></i></a>
@@ -348,6 +355,7 @@ function postDataIntoDB(data, callback) {
 function emit(event, data) {
     console.log('Emitter - emitted: ' + JSON.stringify(data));
     socket.emit(event, data);
+
 }
 
 function addHistoryPanel(history) {
