@@ -6,6 +6,7 @@ var options = '';
 var title = document.title;
 var localdb = null;
 
+
 $(function() {
     $('#jsonData').hide();
     $('.emitted-msg').hide();
@@ -129,7 +130,6 @@ $(function() {
 
 
     processHash();
-    initHistory();
 });
 
 function setHash() {
@@ -238,6 +238,9 @@ function makePanel(event) {
         </div>
     `;
 }
+
+
+
 
 function makePanelHistory(event) {
     return `
@@ -349,7 +352,24 @@ function postDataIntoDB(data, callback) {
     if (localdb == null) {
         localdb = new PouchDB("socketioClientDB");
     }
-    localdb.post(data).then(callback);
+    console.log(JSON.stringify(data.request, null,2))
+
+    // on test si la requete est déja stockée.
+    localdb.find({
+        selector: { query: data.request },
+        fields: ['_id', '_rev']
+    }, function (err, result) {
+        if (err) { return console.log(err); }
+        // la requête n'est pas base de données
+        if (result.docs.length <= 0) {
+            localdb.post(data).then(callback);
+        } else {
+            data._rev = result.docs[0]._rev;
+            data._id = result.docs[0]._id;
+            console.log(JSON.stringify(data, null, 2))
+            localdb.put(data).then(callback);
+        }
+    });
 }
 
 function emit(event, data) {
@@ -357,6 +377,7 @@ function emit(event, data) {
     socket.emit(event, data);
 
 }
+
 
 function addHistoryPanel(history) {
     var histPanelId = history.event;
@@ -392,5 +413,13 @@ function addHistoryPanel(history) {
         }
     });
 }
+
+
+$('.tab a').on('click', function (e) {
+    if ($(this).attr("href") === '#history') {
+        $('#emitHistoryPanels').empty();
+        initHistory();
+    }
+});
 
 

@@ -9,7 +9,6 @@
     "prod": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Xipotera/socket-io.git"
@@ -20,7 +19,7 @@
     "url": "https://github.com/Xipotera/socket-io/issues"
   },
   "homepage": "https://github.com/Xipotera/socket-io#readme",
-  "devDependencies": {
-
+  "devDependencies": {},
+  "dependencies": {
   }
 }
