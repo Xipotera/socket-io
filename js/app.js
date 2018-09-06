@@ -130,6 +130,7 @@ $(function() {
 
 
     processHash();
+    initHistory();
 });
 
 function setHash() {
@@ -350,20 +351,36 @@ function postDataIntoDB(data, callback) {
     if (localdb == null) {
         localdb = new PouchDB("socketioClientDB");
     }
+
     // test if data is stored.
+    // console.log(JSON.stringify({ event: data.event, request: { $elemMatch: { field }}}, null, 2))
     localdb.find({
-        selector: { query: data.request },
-        fields: ['_id', '_rev']
+        // selector: { event: data.event}
+        selector: { event: data.event}
     }, function (err, result) {
         if (err) { return console.log(err); }
-        if (result.docs.length <= 0) { // create data
-            localdb.post(data).then(callback);
-        } else { // update data
-            data._rev = result.docs[0]._rev;
-            data._id = result.docs[0]._id;
-            localdb.put(data).then(callback);
-        }
+        let updated = false;
+        result.docs.map(doc => {
+            if (equals(doc.request,data.request)) {
+                data._rev = doc._rev;
+                data._id = doc._id;
+                localdb.put(data).then(callback);
+                updated = true;
+            };
+        });
+
+        if (!updated) localdb.post(data).then(callback);
     });
+}
+
+function equals(obj1, obj2) {
+    function _equals(obj1, obj2) {
+        var clone = $.extend(true, {}, obj1),
+            cloneStr = JSON.stringify(clone);
+        return cloneStr === JSON.stringify($.extend(true, clone, obj2));
+    }
+
+    return _equals(obj1, obj2) && _equals(obj2, obj1);
 }
 
 function emit(event, data) {
