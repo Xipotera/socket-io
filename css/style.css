@@ -310,3 +310,9 @@ pre {
   color: #D95357;
   cursor: default;
 }
+
+.scrollHistory
+{
+  max-height: 80vh;
+  overflow-y: scroll;
+}

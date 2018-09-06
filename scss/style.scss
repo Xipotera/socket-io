@@ -338,3 +338,9 @@ pre {
 .count {
   color: $secondary;
 }
+
+.scrollHistory
+{
+  max-height: 80vh;
+  overflow-y: scroll;
+}
