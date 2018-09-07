@@ -50,26 +50,47 @@
 
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">New</a></li>
+            <li><a id="new" title="Open a new, empty document" href="/#/new">New</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Open <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Open from disk</a></li>
+                <a href="#" id="open" title="Open file" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">Open <span class="caret"></span></a>
+                <ul id="openMenu" class="dropdown-menu">
+                    <li>
+                        <a id="openFromDisk" title="Open file from disk">Open from disk</a>
+                    </li>
+                    <li>
+                        <a id="openUrl" title="Open file from url">Open url</a>
+                    </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li class="file">
+                        <a class="open" href="/?id=d6a07f74849b49dea0592c90f0e698a7"
+                           title="Date: 2018-09-07 09:24:47">dynamic gallery</a>
+                        <a class="remove" title="Delete &quot;dynamic gallery&quot;">×</a>
+                    </li>
+                    <li class="file">
+                        <a class="open" href="/?id=4c9ae9136b6b4fac89dd09a1249f322b"
+                           title="Date: 2018-09-07 06:17:00">save quick replies</a>
+                        <a class="remove" title="Delete &quot;save quick replies&quot;">×</a>
+
+                    </li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Save <span class="caret"></span></a>
+            <li id="saveMenu" class="dropdown">
+                <a href="#" id="save" title="Save file" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">Save <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Save to disk</a></li>
-                    <li><a href="#">Save Online</a></li>
+                    <li>
+                        <a id="saveToDisk" title="Save file to disk">Save to disk</a>
+                    </li>
+                    <li>
+                        <a id="saveOnline" title="Save and share online">Save online</a>
+                    </li>
                 </ul>
             </li>
         </ul>
 
-    </div>
-    <!-- /.container-fluid -->
+        </div>
+        <!-- /.container-fluid -->
 </nav>
 
 <div id="slideOut">
