@@ -183,12 +183,15 @@ html {
         cursor: move;
     }
 
+.navbar{
+  margin-bottom: 0;
+}
+
 //Formulaire
 
 .form {
   padding: 20px;
   max-width: $form-width;
-  margin-top:40px;
   box-shadow:0 4px 10px 4px rgba($left-sidebar-bg,.3);
 }
 

@@ -352,8 +352,6 @@ function postDataIntoDB(data, callback) {
         localdb = new PouchDB("socketioClientDB");
     }
 
-    // test if data is stored.
-    // console.log(JSON.stringify({ event: data.event, request: { $elemMatch: { field }}}, null, 2))
     localdb.find({
         // selector: { event: data.event}
         selector: { event: data.event}
