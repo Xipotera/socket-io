@@ -364,11 +364,11 @@ ul>li.file{
   display: inline-flex !important;
 }
 
-#openMenu .file:first-child a.remove {
+.dropdown .file:first-child a.remove {
   padding-top: 10px;
 }
 
-#openMenu .file a.remove {
+.dropdown .file a.remove {
   display: none;
   position: absolute;
   top: 0;
@@ -380,4 +380,10 @@ ul>li.file{
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
+}
+
+
+.label {
+  font-weight: 300;
+  letter-spacing: 1px;
 }
