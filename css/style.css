@@ -25,7 +25,7 @@ html {
     transition-property: all;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    z-index: 1000;
+    z-index: 999;
 }
 
 /* Display slideOut */
@@ -159,7 +159,7 @@ html {
 
 .form {
     padding: 20px;
-    max-width: calc(30% - 2%);
+    max-width: calc($sidebar-width - 2%);
     box-shadow: 0 4px 10px 4px rgba($ left-sidebar-bg, .3);
 }
 
