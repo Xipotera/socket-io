@@ -34,9 +34,7 @@ $(function() {
             if (url === '') {
                 console.error('Invalid URL given');
             } else {
-                socket = io(url, $.extend({}, opt, {
-                    transports: ['websocket']
-                }));
+                socket = io(url, $.extend({}, opt));
                 setHash();
                 socket.on('connect', function() {
                     $("#submitEmit").prop('disabled', false);
